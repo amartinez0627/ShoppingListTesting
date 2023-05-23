@@ -6,11 +6,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.android.shoppinglisttesting.R
 
-class ShoppingFragment: Fragment(R.layout.fragment_shopping) {
+class AddShoppingItemFragment: Fragment(R.layout.fragment_add_shopping_item) {
 
     private val viewModel: ShoppingViewModel by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
 }

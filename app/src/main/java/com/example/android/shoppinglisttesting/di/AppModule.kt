@@ -4,8 +4,11 @@ import android.content.Context
 import androidx.room.Room
 import com.example.android.shoppinglisttesting.commons.Constants.BASE_URL
 import com.example.android.shoppinglisttesting.commons.Constants.DATABASE_NAME
+import com.example.android.shoppinglisttesting.data.local.ShoppingDao
 import com.example.android.shoppinglisttesting.data.local.ShoppingItemDatabase
 import com.example.android.shoppinglisttesting.data.remote.PixabayAPI
+import com.example.android.shoppinglisttesting.repositories.DefaultShoppingRepository
+import com.example.android.shoppinglisttesting.repositories.ShoppingRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,6 +27,13 @@ object AppModule {
     fun provideShoppingItemDatabase(
         @ApplicationContext context: Context
     ) = Room.databaseBuilder(context, ShoppingItemDatabase::class.java, DATABASE_NAME).build()
+
+    @Provides
+    @Singleton
+    fun provideDefaultShoppingRepository(
+        dao: ShoppingDao,
+        api: PixabayAPI
+    ) = DefaultShoppingRepository(dao,api) as ShoppingRepository
 
     @Provides
     @Singleton
